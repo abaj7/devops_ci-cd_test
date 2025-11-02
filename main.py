@@ -1,5 +1,11 @@
-def add (num1, num2):
-    return num1 + num2
-print(f"the sum of 2 + 2 = {add(2,2)}")
+def add(a, b):
+  return a + b
 
+def subtract(a, b):
+  return a - b
 
+def multiply(a, b):
+    return a * b
+
+def divide(a, b):
+    return a / b
