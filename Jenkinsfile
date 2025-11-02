@@ -5,14 +5,12 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'python3 main.py'
-                // Add your build commands here
             }
         }
 
         stage('Test') {
             steps {
-                echo 'Running tests...'
-                // Add test commands like 'pytest' if needed
+                sh 'python3 -m pytest'
             }
         }
 
@@ -27,11 +25,11 @@ pipeline {
     post {
         always {
             script {
-                // Jenkins build info
+                // build duration
                 def status = currentBuild.currentResult
-                def duration = currentBuild.duration / 1000.0 // in seconds
+                def duration = currentBuild.duration / 1000.0
 
-                // Log to MySQL
+                // MySQL
                 sh "python3 /scripts/log_to_db.py --project MyProject --status ${status} --build-number $BUILD_NUMBER --duration ${duration}"
             }
         }
